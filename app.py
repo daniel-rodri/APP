@@ -1,14 +1,15 @@
 import os 
 
-restalrantes = ['pizza','xp'] # lista de nomes de restalrante
-
+restaurantes = [{'nome':'restaurante xp','categoria':'alimento','ativo':False},
+                {'nome':'santa','categoria':'carne','ativo':True},
+                {'nome':'cwb','categoria':'sushi','ativo':False}] 
 def exibir_nome_do_programa():
  print ("""sabor express
  """)
 def exibir_opcoes():
- print ('1. cadastrar restalrante')
- print ('2. listar restalrante')
- print ('3. ativar restalrante')
+ print ('1. cadastrar restaurante')
+ print ('2. listar restaurante')
+ print ('3. ativar restaurante')
  print ('4. sair')
 
 def finaliza_app():
@@ -23,45 +24,54 @@ def opcao_invalida():
     voltar_ao_menu_principal()
 
 def exibir_subtitulo(texto):
-    os.system('cls') #os.system('clear')
+    os.system('clear') 
+    linha = '*'*(len(texto))
+    print(linha)
     print(texto)
+    print(linha)
     print()
 
-def cadastrar_novo_restalrante():
-   exibir_subtitulo('cadastro de novos restalrantes:')
-   nome_do_restalrante = input('digite o nome do novo restalrante')
-   restalrantes.append(nome_do_restalrante)
-   print(f'o restalrante{nome_do_restalrante}foi cadastrado com sucesso!')
+def cadastrar_novo_restaurante():
+   exibir_subtitulo('cadastro de novos restaurantes:')
+   nome_do_restaurante = input('digite o nome do novo restaurante:')
+   categoria = input(f'digite a categoria do restalrante {nome_do_restaurante}: ')
+   dado_do_restaurante = {'nome':nome_do_restaurante, 'categoria': categoria, 'ativo': False}
+   restaurantes.append(dado_do_restaurante)
+   print(f'o restaurante{nome_do_restaurante}foi cadastrado com sucesso!')
    voltar_ao_menu_principal()
 
-   def listar_restalrante():
-      exibir_subtitulo('listando os restalrantes')
+def listar_restaurante():
+    exibir_subtitulo('listando os restaurantes')
 
-      for restalrante in restalrantes:
-         print(f'*{restalrante}')
+    print(f'{"nome do restaurante".ljust(22)} |{"categoria".ljust(20)} | satus')
+    for restaurante in restaurantes:
+       nome_restaurante = restaurante ['nome']
+       categoria = restaurante ['categoria']
+       ativo = 'ativado' if restaurante ['ativo'] else  'desativado'
+       print(f'-{nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
 
-   voltar_ao_menu_principal()
+    voltar_ao_menu_principal()
 
 def escolher_opcao():
    try:
     opcao_escolhida =int(input('escolha uma opcao: '))
 
     if opcao_escolhida == 1:
-       cadastrar_novo_restalrante()
+       cadastrar_novo_restaurante()
     elif opcao_escolhida == 2:
-       listar_restalrante()
+       listar_restaurante()
     elif opcao_escolhida == 3:
-        print('ativar restalrante')
+        print('ativar restaurante')
     elif opcao_escolhida== 4:
        finaliza_app()
     else:
-        finaliza_app()
+         opcao_invalida()
 
    except:
     opcao_invalida()
 
 def main():
-    os.system('cls')
+    os.system('clear')
     exibir_nome_do_programa()
     exibir_opcoes()
     escolher_opcao()
