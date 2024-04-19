@@ -2,7 +2,8 @@ import os
 
 restaurantes = [{'nome':'restaurante xp','categoria':'alimento','ativo':False},
                 {'nome':'santa','categoria':'carne','ativo':True},
-                {'nome':'cwb','categoria':'sushi','ativo':False}] 
+                {'nome':'cwb','categoria':'sushi','ativo':False}]
+
 def exibir_nome_do_programa():
  print ("""sabor express
  """)
@@ -52,6 +53,22 @@ def listar_restaurante():
 
     voltar_ao_menu_principal()
 
+def alterar_estado_restaurante():
+   exibir_subtitulo('alternando estado do restaurante')
+   nome_restaurante = input('digite o nome do restaurante que deseja alterar o estado:')
+   restaurante_encontrado = False
+
+   for restaurante in restaurantes:
+      if nome_restaurante == restaurante ['nome']:
+         restaurante_encontrado = True
+         restaurante['ativo'] = not restaurante ['nome']
+         mensagem = f'o restaurante {nome_restaurante}foi ativado com sucesso' if restaurante['ativo'] else f'o restaurante{nome_restaurante}foi desativado com sucesso'
+         print (mensagem)
+
+   if not restaurante_encontrado:
+      print('o restaurante nao foi encontrado')
+   voltar_ao_menu_principal()
+
 def escolher_opcao():
    try:
     opcao_escolhida =int(input('escolha uma opcao: '))
@@ -61,7 +78,7 @@ def escolher_opcao():
     elif opcao_escolhida == 2:
        listar_restaurante()
     elif opcao_escolhida == 3:
-        print('ativar restaurante')
+        alterar_estado_restaurante()
     elif opcao_escolhida== 4:
        finaliza_app()
     else:
@@ -76,5 +93,5 @@ def main():
     exibir_opcoes()
     escolher_opcao()
 
-if __name__ =='_main_':
+if __name__ == '_main_':
    main()
