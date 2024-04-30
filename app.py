@@ -9,6 +9,7 @@ def exibir_nome_do_programa():
 print ("""sabor express
  """)
 def exibir_opcoes():
+ '''essa funçao e responsavel por exibir as opçoes'''
  print ('1. cadastrar restaurante')
  print ('2. listar restaurante')
  print ('3. ativar restaurante')
@@ -31,6 +32,7 @@ def voltar_ao_menu_principal():
    main()
 
 def opcao_invalida():
+    '''essa funcao e responsavel por invalidar as opçoes'''
     print('opcao_invalida!\n')
     voltar_ao_menu_principal()
 
@@ -108,6 +110,7 @@ def alterar_estado_restaurante():
    voltar_ao_menu_principal()
 
 def escolher_opcao():
+   '''essa funçao e responsavel por mescolher as opçoes'''
    try:
     opcao_escolhida =int(input('escolha uma opcao: '))
 
@@ -126,6 +129,7 @@ def escolher_opcao():
     opcao_invalida()
 
 def main():
+    '''essa funcao e a principal responsavel por apresentar as opçoes'''
     os.system('clear')
     exibir_nome_do_programa()
     exibir_opcoes()
